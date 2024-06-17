@@ -19,11 +19,10 @@ Window::Window(const WindowSettings settings)
 
 void Window::update()
 {
+    glfwSwapBuffers(m_Window);
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
     glfwPollEvents();
-    glfwSwapBuffers(m_Window);
 }
 
 void Window::initWindow(const WindowSettings& settings)
@@ -42,7 +41,6 @@ void Window::initWindow(const WindowSettings& settings)
 
     glfwMakeContextCurrent(m_Window);
     VX_CORE_ASSERT(gladLoadGLLoader((GLADloadproc)glfwGetProcAddress), "Failed to initialize GLAD. Aborting");
-
     glfwSetWindowUserPointer(m_Window, &m_Settings);
     initCallbacks();
 }
